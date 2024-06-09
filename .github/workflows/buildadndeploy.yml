@@ -84,9 +84,8 @@ jobs:
             rm -rf docs
       - name: Deploy
         run: |
-            mkdir docs
-            cd docs
-            tar -xvzf ../element-web/dist/*.tar.gz
+            tar -xvzf element-web/dist/*.tar.gz
+            mv element-v* docs
       - name: Cleanup
         run: |
             rm -rf element-web
