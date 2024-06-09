@@ -22,9 +22,20 @@ jobs:
         run: |
             cd element-web
             yarn install
-      - name: Create config
+      - name: Build
         run: |
             cd element-web
+            yarn dist
+      - name: Remove old
+        run: |
+            rm -rf docs
+      - name: Deploy
+        run: |
+            tar -xvzf element-web/dist/*.tar.gz
+            mv element-v* docs
+      - name: Create config
+        run: |
+            cd docs
             echo '{
                 "default_server_config": {
                     "m.homeserver": {
@@ -75,17 +86,6 @@ jobs:
                 "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
             }' > config.json
 
-      - name: Build
-        run: |
-            cd element-web
-            yarn dist
-      - name: Remove old
-        run: |
-            rm -rf docs
-      - name: Deploy
-        run: |
-            tar -xvzf element-web/dist/*.tar.gz
-            mv element-v* docs
       - name: Cleanup
         run: |
             rm -rf element-web
