@@ -77,4 +77,4 @@ jobs:
         run: |
             cd element-web
             yarn dist
-            ls
+            ls dist
