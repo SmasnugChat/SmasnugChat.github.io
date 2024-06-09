@@ -18,7 +18,5 @@ jobs:
         run: "git clone https://github.com/element-hq/element-web/"
       - name: Install deps
         run: "cd element-web && yarn install"
-      - name: List
-        run: ls
       - name: Create config
-        run: "cp config.sample.json config.json"
+        run: "cd element-web && cp config.sample.json config.json"
