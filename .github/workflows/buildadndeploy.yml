@@ -15,9 +15,9 @@ jobs:
         with:
           node-version: '20.x'
       - name: Clone element
-        run: "git clone https://github.com/element-hq/element-web/ && cd element-web"
+        run: "git clone https://github.com/element-hq/element-web/ && cd element-web && pwd"
       - name: Install deps
-        run: "yarn install"
+        run: "yarn install && pwd"
       - name: List
         run: ls
       - name: Create config
