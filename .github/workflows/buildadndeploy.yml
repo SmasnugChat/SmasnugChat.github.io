@@ -10,6 +10,8 @@ jobs:
   buildanddeploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.5
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -68,7 +70,7 @@ jobs:
                 "element_call": {
                     "url": "https://call.element.io",
                     "participant_limit": 8,
-                    "brand": "Element Call"
+                    "brand": "Smasnug Call"
                 },
                 "map_style_url": "https://api.maptiler.com/maps/streets/style.json?key=fU3vlMsMn4Jb6dnEIFsx"
             }' > config.json
@@ -77,4 +79,19 @@ jobs:
         run: |
             cd element-web
             yarn dist
-            ls dist
+      - name: Remove old
+        run: |
+            rm -rf docs
+      - name: Deploy
+        run: |
+            mkdir docs
+            cd docs
+            tar -xvzf ../element-web/dist/*.tar.gz
+      - name: Cleanup
+        run: |
+            rm -rf element-web
+      - name: Push
+        run: |
+            git add --all
+            git commit -m "Automatic deploy"
+            git push
