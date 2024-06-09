@@ -17,8 +17,7 @@ jobs:
       - name: Clone element
         run: "git clone https://github.com/element-hq/element-web/"
       - name: Install deps
-        run: "cd element-web"
-        run: "yarn install && pwd"
+        run: "cd element-web && yarn install"
       - name: List
         run: ls
       - name: Create config
