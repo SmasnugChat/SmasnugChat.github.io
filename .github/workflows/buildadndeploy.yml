@@ -18,13 +18,10 @@ jobs:
           node-version: '20.x'
       - name: Clone element
         run: "git clone https://github.com/element-hq/element-web/"
-      - name: Install deps
-        run: |
-            cd element-web
-            yarn install
       - name: Build
         run: |
             cd element-web
+            yarn install
             yarn dist
       - name: Remove old
         run: |
